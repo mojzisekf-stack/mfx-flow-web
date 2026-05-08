@@ -1,0 +1,15 @@
+{
+  "name": "mfx-flow-web",
+  "version": "1.0.0",
+  "description": "MFX-FLOW - osobní web webové agentury pro řemeslníky",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}

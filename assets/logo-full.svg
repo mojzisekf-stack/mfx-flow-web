@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" fill="none">
+  <defs>
+    <linearGradient id="lf-grad" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7CC8FF"></stop>
+      <stop offset="1" stop-color="#3568D4"></stop>
+    </linearGradient>
+  </defs>
+  <g>
+    <path d="M6 36 C 12 22, 18 22, 26 36 S 40 50, 48 36" stroke="url(#lf-grad)" stroke-width="2.6" stroke-linecap="round" fill="none"></path>
+    <path d="M6 28 C 12 14, 18 14, 26 28 S 40 42, 48 28" stroke="url(#lf-grad)" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.55"></path>
+  </g>
+  <text x="62" y="36" font-family="&#39;Cabinet Grotesk&#39;,&#39;Helvetica Neue&#39;,sans-serif" font-weight="700" font-size="22" letter-spacing="0.04em" fill="currentColor">MFX-FLOW</text>
+</svg>
