@@ -798,4 +798,71 @@
   }, { threshold: 0.12 });
   revealEls.forEach((el) => revIO.observe(el));
 
+  // ═══ Hero Infinite Grid ════════════════════════════════════
+  (function initHeroGrid() {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+    const CELL = 40, SPEED = 0.5;
+    let ox = 0, oy = 0;
+
+    function makeGrid(id) {
+      const NS = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('aria-hidden', 'true');
+      const defs = document.createElementNS(NS, 'defs');
+      const pat  = document.createElementNS(NS, 'pattern');
+      pat.setAttribute('id', id);
+      pat.setAttribute('width', CELL);
+      pat.setAttribute('height', CELL);
+      pat.setAttribute('patternUnits', 'userSpaceOnUse');
+      pat.setAttribute('x', 0);
+      pat.setAttribute('y', 0);
+      const path = document.createElementNS(NS, 'path');
+      path.setAttribute('d', 'M ' + CELL + ' 0 L 0 0 0 ' + CELL);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', 'white');
+      path.setAttribute('stroke-width', '1');
+      const rect = document.createElementNS(NS, 'rect');
+      rect.setAttribute('width', '100%');
+      rect.setAttribute('height', '100%');
+      rect.setAttribute('fill', 'url(#' + id + ')');
+      pat.appendChild(path); defs.appendChild(pat);
+      svg.appendChild(defs); svg.appendChild(rect);
+      return { svg, pat };
+    }
+
+    const sDiv = document.createElement('div');
+    sDiv.className = 'hero__grid-static';
+    const { svg: sA, pat: pA } = makeGrid('hg-static');
+    sDiv.appendChild(sA);
+
+    const rDiv = document.createElement('div');
+    rDiv.className = 'hero__grid-reveal';
+    const { svg: sB, pat: pB } = makeGrid('hg-reveal');
+    rDiv.appendChild(sB);
+
+    const veil = hero.querySelector('.hero__veil');
+    if (veil) { veil.after(sDiv, rDiv); } else { hero.prepend(sDiv, rDiv); }
+
+    hero.addEventListener('mousemove', function(e) {
+      const r = hero.getBoundingClientRect();
+      const g = 'radial-gradient(300px circle at ' + (e.clientX - r.left) + 'px ' + (e.clientY - r.top) + 'px, black, transparent)';
+      rDiv.style.webkitMaskImage = g;
+      rDiv.style.maskImage = g;
+    });
+    hero.addEventListener('mouseleave', function() {
+      const g = 'radial-gradient(0px circle, transparent, transparent)';
+      rDiv.style.webkitMaskImage = g;
+      rDiv.style.maskImage = g;
+    });
+
+    (function tick() {
+      ox = (ox + SPEED) % CELL;
+      oy = (oy + SPEED) % CELL;
+      pA.setAttribute('x', ox); pA.setAttribute('y', oy);
+      pB.setAttribute('x', ox); pB.setAttribute('y', oy);
+      requestAnimationFrame(tick);
+    })();
+  })();
+
 })();

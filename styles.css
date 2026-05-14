@@ -1630,3 +1630,29 @@ section[id]{ scroll-margin-top: 80px; }
   .hero__stats{ grid-template-columns: 1fr; gap: 12px; }
   .footer__cols{ grid-template-columns: 1fr !important; }
 }
+
+/* ═══ Hero Infinite Grid ═══════════════════════════════════ */
+.hero__grid-static,
+.hero__grid-reveal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+.hero__grid-static {
+  z-index: 1;
+  opacity: 0.06;
+}
+.hero__grid-reveal {
+  z-index: 3;
+  opacity: 0.45;
+  -webkit-mask-image: radial-gradient(300px circle at -9999px -9999px, black, transparent);
+  mask-image:         radial-gradient(300px circle at -9999px -9999px, black, transparent);
+}
+.hero__grid-reveal svg,
+.hero__grid-static svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
