@@ -6,10 +6,9 @@
    - States: default → sending → sent / error
 ═══════════════════════════════════════════════════════════════ */
 
-// Apps Script Web App URL — z env proměnných.
-// Lokálně: .env.local (VITE_FORM_ENDPOINT=...)
-// Production (Vercel): nastav v Vercel dashboardu → Settings → Environment Variables
-const FORM_ENDPOINT = (import.meta?.env?.VITE_FORM_ENDPOINT) || '';
+// Apps Script Web App URL — natvrdo (statický deploy, bez Vite buildu).
+// Apps Script endpoint je veřejný (autorizace "Anyone"), proto není citlivý.
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxen3DdgHCIQoLxzjebJDjeMF5z3AyWtJZJIraitEbghBOF5dF92yy4XGCMiYzTBrWKFQ/exec';
 
 const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RX = /^(\+?420)?\s?[0-9]{3}\s?[0-9]{3}\s?[0-9]{3}$/;
