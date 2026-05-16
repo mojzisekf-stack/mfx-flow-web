@@ -798,6 +798,105 @@
   }, { threshold: 0.12 });
   revealEls.forEach((el) => revIO.observe(el));
 
+  // ═══ Orbital Navigation ════════════════════════════════════
+  (function initOrbitalNav() {
+    const section = document.getElementById('orbital-nav');
+    if (!section) return;
+
+    const NAV_ITEMS = [
+      { title: 'O nás',              href: '#o-nas',             icon: '◈' },
+      { title: 'Co stojí nemít web', href: '#cena-necinnosti',   icon: '◎' },
+      { title: 'Balíčky',            href: '#reseni',            icon: '⬡' },
+      { title: 'Ukázky',             href: '#portfolio',         icon: '✦' },
+      { title: 'Proces',             href: '#proces',            icon: '⟳' },
+    ];
+
+    const RADIUS = 200;
+    let angle = 0;
+    let autoRotate = true;
+
+    // Build container
+    const container = document.createElement('div');
+    container.className = 'orbital-nav__container';
+
+    // Orbit ring
+    const orbitRing = document.createElement('div');
+    orbitRing.className = 'orbital-nav__ring';
+    container.appendChild(orbitRing);
+
+    // Center orb
+    const center = document.createElement('div');
+    center.className = 'orbital-nav__center';
+    ['80px', '96px'].forEach(function(size, i) {
+      const r = document.createElement('div');
+      r.className = 'orbital-nav__center-ring';
+      r.style.cssText = 'width:' + size + ';height:' + size + ';' + (i ? 'animation-delay:0.5s' : '');
+      center.appendChild(r);
+    });
+    const inner = document.createElement('div');
+    inner.className = 'orbital-nav__center-inner';
+    center.appendChild(inner);
+    container.appendChild(center);
+
+    // Nodes
+    const nodeEls = NAV_ITEMS.map(function(item) {
+      const node = document.createElement('div');
+      node.className = 'orbital-nav__node';
+
+      const btn = document.createElement('a');
+      btn.className = 'orbital-nav__node-btn';
+      btn.href = item.href;
+      btn.textContent = item.icon;
+      btn.setAttribute('aria-label', item.title);
+
+      const label = document.createElement('span');
+      label.className = 'orbital-nav__node-label';
+      label.textContent = item.title;
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(item.href);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        autoRotate = false;
+        setTimeout(function() { autoRotate = true; }, 3000);
+      });
+
+      node.appendChild(btn);
+      node.appendChild(label);
+      container.appendChild(node);
+      return node;
+    });
+
+    // Click on background → resume rotation
+    section.addEventListener('click', function(e) {
+      if (e.target === section || e.target === container || e.target === orbitRing) {
+        autoRotate = true;
+      }
+    });
+
+    section.appendChild(container);
+
+    // Animation loop
+    var lastTs = 0;
+    var SPEED = 0.006; // deg/ms — matches original (0.3 deg per 50ms)
+    (function tick(ts) {
+      var delta = ts - lastTs;
+      lastTs = ts;
+      if (autoRotate) angle = (angle + delta * SPEED) % 360;
+
+      var total = NAV_ITEMS.length;
+      nodeEls.forEach(function(node, i) {
+        var a = ((i / total) * 360 + angle) % 360;
+        var rad = (a * Math.PI) / 180;
+        var x = RADIUS * Math.cos(rad);
+        var y = RADIUS * Math.sin(rad);
+        node.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+        node.style.opacity = Math.max(0.4, 0.4 + 0.6 * ((1 + Math.sin(rad)) / 2));
+      });
+      requestAnimationFrame(tick);
+    })(0);
+  })();
+
   // ═══ Hero Infinite Grid ════════════════════════════════════
   (function initHeroGrid() {
     const hero = document.getElementById('hero');
