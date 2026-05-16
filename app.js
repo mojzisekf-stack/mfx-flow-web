@@ -798,6 +798,23 @@
   }, { threshold: 0.12 });
   revealEls.forEach((el) => revIO.observe(el));
 
+  // ═══ Glow Cards ════════════════════════════════════════════
+  (function initGlowCards() {
+    document.addEventListener('pointermove', function(e) {
+      var r = document.documentElement;
+      r.style.setProperty('--x', e.clientX.toFixed(2));
+      r.style.setProperty('--y', e.clientY.toFixed(2));
+      r.style.setProperty('--xp', (e.clientX / window.innerWidth).toFixed(2));
+      r.style.setProperty('--yp', (e.clientY / window.innerHeight).toFixed(2));
+    });
+    document.querySelectorAll('[data-glow]').forEach(function(card) {
+      var inner = document.createElement('div');
+      inner.setAttribute('data-glow', '');
+      inner.setAttribute('aria-hidden', 'true');
+      card.insertBefore(inner, card.firstChild);
+    });
+  })();
+
   // ═══ Orbital Navigation ════════════════════════════════════
   (function initOrbitalNav() {
     const section = document.getElementById('orbital-nav');
