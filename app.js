@@ -22,6 +22,39 @@
   window.addEventListener('scroll', updateHeroMeter, { passive: true });
   updateHeroMeter();
 
+  /* ─── Nav — schovat při scrollu dolů, ukázat při scrollu nahoru ─── */
+  (function initNavAutoHide() {
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
+
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    function update() {
+      const y = window.scrollY;
+
+      if (y < 80) {
+        // Vršek stránky — vždy vidět, průhledné pozadí
+        nav.classList.remove('nav--hidden', 'nav--solid');
+      } else {
+        nav.classList.add('nav--solid');
+        if (y > lastY + 6 && y > 120) {
+          nav.classList.add('nav--hidden');       // scroll dolů → schovat
+        } else if (y < lastY - 6) {
+          nav.classList.remove('nav--hidden');     // scroll nahoru → ukázat
+        }
+      }
+
+      lastY = y;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  })();
+
   /* ═══════════════════════════════════════════════════════════════
      HERO — Three.js scroll-scrubbed wave / ribbon
      A plane mesh whose vertices are pushed by layered noise.
@@ -29,6 +62,7 @@
   ═══════════════════════════════════════════════════════════════ */
   function initHeroCanvas() {
     if (!window.THREE) return;
+    if (isMobile) return; // na mobilu WebGL vynecháme (výkon/baterie) — hero má CSS grid + veil
     const canvas = document.getElementById('hero-canvas');
     if (!canvas) return;
 
@@ -821,11 +855,11 @@
     if (!section) return;
 
     const NAV_ITEMS = [
-      { title: 'O nás',              href: '#o-nas',             icon: '◈' },
-      { title: 'Co stojí nemít web', href: '#cena-necinnosti',   icon: '◎' },
-      { title: 'Balíčky',            href: '#reseni',            icon: '⬡' },
-      { title: 'Ukázky',             href: '#portfolio',         icon: '✦' },
-      { title: 'Proces',             href: '#proces',            icon: '⟳' },
+      { title: 'O nás',      href: '#o-nas',     icon: '◈' },
+      { title: 'Balíčky',    href: '#reseni',    icon: '⬡' },
+      { title: 'Ukázky',     href: '#portfolio', icon: '✦' },
+      { title: 'Proces',     href: '#proces',    icon: '⟳' },
+      { title: 'Reference',  href: '#reference', icon: '★' },
     ];
 
     const RADIUS = 200;
@@ -979,6 +1013,43 @@
       pB.setAttribute('x', ox); pB.setAttribute('y', oy);
       requestAnimationFrame(tick);
     })();
+  })();
+
+  /* ─── Mobilní menu (hamburger → fullscreen overlay) ─── */
+  (function initMobileMenu() {
+    const burger = document.querySelector('.nav__burger');
+    const menu = document.getElementById('mobile-menu');
+    if (!burger || !menu) return;
+
+    function setOpen(open) {
+      document.body.classList.toggle('menu-open', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      burger.setAttribute('aria-label', open ? 'Zavřít menu' : 'Otevřít menu');
+    }
+    burger.addEventListener('click', () => {
+      setOpen(!document.body.classList.contains('menu-open'));
+    });
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 880) setOpen(false); });
+  })();
+
+  /* ─── Sticky mobilní CTA — objeví se po odscrollování hera ─── */
+  (function initMobileCTA() {
+    const cta = document.querySelector('.mobile-cta');
+    if (!cta) return;
+    let ticking = false;
+    function update() {
+      const hero = document.getElementById('hero');
+      const trigger = (hero ? hero.offsetHeight : window.innerHeight) * 0.6;
+      cta.classList.toggle('mobile-cta--show', window.scrollY > trigger);
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
   })();
 
 })();

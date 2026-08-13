@@ -1,9 +1,11 @@
 /* ═══════════════════════════════════════════════════════════════
-   MFX-FLOW · Form handler
-   - Validace polí (jméno, kontakt = email/tel CZ, GDPR)
-   - Honeypot anti-spam
-   - Fetch POST na Google Apps Script Web App endpoint
-   - States: default → sending → sent / error
+   MFX-FLOW · Univerzální form handler
+   - Obsluhuje libovolný formulář s atributem [data-mfx-form]
+   - Typ formuláře v data-form-type (lead / tip / kurz) → posílá se jako `type`
+   - Validace: [required] pole + [data-validate="contact|email"]
+   - Honeypot anti-spam (skryté pole name="website")
+   - Fetch POST (no-cors) na Google Apps Script endpoint
+   - Stavy: default → sending → sent / error (třídy na <form>)
 ═══════════════════════════════════════════════════════════════ */
 
 // Apps Script Web App URL — natvrdo (statický deploy, bez Vite buildu).
@@ -13,52 +15,49 @@ const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxen3DdgHCIQoLxzj
 const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RX = /^(\+?420)?\s?[0-9]{3}\s?[0-9]{3}\s?[0-9]{3}$/;
 
-const form = document.getElementById('lead-form');
+const DEFAULT_MESSAGES = {
+  required: 'Tohle pole prosím vyplň.',
+  requiredCheck: 'Bez zaškrtnutí to bohužel nejde.',
+  contact: 'Tohle nevypadá jako platný e-mail ani český telefon.',
+  email: 'Tohle nevypadá jako platný e-mail.',
+  short: 'Napiš prosím alespoň 2 znaky.',
+};
 
-if (form) {
-  form.addEventListener('submit', handleSubmit);
+// Inicializuj každý formulář na stránce
+document.querySelectorAll('[data-mfx-form]').forEach(initForm);
 
-  // Live clear errors při typing
-  form.querySelectorAll('input, select').forEach((el) => {
-    el.addEventListener('input', () => clearError(el.name));
-    el.addEventListener('change', () => clearError(el.name));
+function initForm(form) {
+  form.addEventListener('submit', (e) => handleSubmit(e, form));
+
+  // Živé mazání chyb při psaní / změně
+  form.querySelectorAll('input, select, textarea').forEach((el) => {
+    el.addEventListener('input', () => clearError(form, el.name));
+    el.addEventListener('change', () => clearError(form, el.name));
   });
 }
 
-async function handleSubmit(e) {
+async function handleSubmit(e, form) {
   e.preventDefault();
-
-  // Reset stavů
   form.classList.remove('sent', 'error');
 
-  // Honeypot — bot vyplnil pole, tiše předstírej úspěch
+  // Honeypot — bot vyplnil skryté pole, tiše předstírej úspěch
   if (form.website && form.website.value) {
     form.classList.add('sent');
     return;
   }
 
-  // Validace
-  if (!validateForm()) return;
+  if (!validateForm(form)) return;
 
-  // Sending state
   form.classList.add('sending');
 
-  const payload = {
-    name: form.name.value.trim(),
-    contact: form.contact.value.trim(),
-    kind: form.kind.value,
-    gdpr: form.gdpr.checked,
-    userAgent: navigator.userAgent,
-    referrer: document.referrer || 'direct',
-  };
+  const payload = collectPayload(form);
 
   try {
     if (!FORM_ENDPOINT || FORM_ENDPOINT.includes('REPLACE_ME')) {
-      throw new Error('VITE_FORM_ENDPOINT není nastavený. Zkontroluj .env.local.');
+      throw new Error('FORM_ENDPOINT není nastavený.');
     }
 
-    // Apps Script vrátí simple response, ale CORS preflight neumí.
-    // Použijeme text/plain content-type → simple request, žádný preflight.
+    // Apps Script neumí CORS preflight → text/plain = simple request bez preflightu.
     await fetch(FORM_ENDPOINT, {
       method: 'POST',
       mode: 'no-cors',
@@ -66,12 +65,11 @@ async function handleSubmit(e) {
       body: JSON.stringify(payload),
     });
 
-    // S `mode: no-cors` neumíme číst response → optimisticky předpokládáme úspěch.
-    // Kontrolu provedeme v Sheetu / emailu.
+    // no-cors → response nečteme, optimisticky předpokládáme úspěch.
+    // Kontrola probíhá v Sheetu / e-mailu.
     form.classList.remove('sending');
     form.classList.add('sent');
     form.reset();
-
   } catch (err) {
     console.error('Form submit failed:', err);
     form.classList.remove('sending');
@@ -79,51 +77,87 @@ async function handleSubmit(e) {
   }
 }
 
-function validateForm() {
+// Sesbírá všechna pojmenovaná pole (kromě honeypotu) + typ formuláře
+function collectPayload(form) {
+  const payload = {
+    type: form.dataset.formType || 'lead',
+    userAgent: navigator.userAgent,
+    referrer: document.referrer || 'direct',
+    page: location.pathname || '/',
+  };
+
+  form.querySelectorAll('input, select, textarea').forEach((el) => {
+    if (!el.name || el.name === 'website') return;
+    if (el.type === 'checkbox') {
+      payload[el.name] = el.checked;
+    } else {
+      payload[el.name] = el.value.trim();
+    }
+  });
+
+  return payload;
+}
+
+function validateForm(form) {
   let valid = true;
 
-  // Jméno
-  const name = form.name.value.trim();
-  if (name.length < 2) {
-    showError('name', 'Napiš mi prosím jméno (alespoň 2 znaky).');
-    valid = false;
-  }
+  form.querySelectorAll('input, select, textarea').forEach((el) => {
+    if (!el.name || el.name === 'website') return;
 
-  // Kontakt — email nebo telefon
-  const contact = form.contact.value.trim();
-  if (!contact) {
-    showError('contact', 'Napiš telefon nebo e-mail, ať tě můžu kontaktovat.');
-    valid = false;
-  } else if (!EMAIL_RX.test(contact) && !PHONE_RX.test(contact.replace(/\s/g, ''))) {
-    showError('contact', 'Tohle nevypadá jako platný e-mail ani český telefon.');
-    valid = false;
-  }
+    const rule = el.dataset.validate; // 'contact' | 'email' | undefined
+    const isRequired = el.hasAttribute('required');
 
-  // GDPR
-  if (!form.gdpr.checked) {
-    showError('gdpr', 'Bez souhlasu se zpracováním údajů to bohužel nejde.');
-    valid = false;
-  }
+    // Checkbox (GDPR, čestné prohlášení)
+    if (el.type === 'checkbox') {
+      if (isRequired && !el.checked) {
+        showError(form, el.name, el.dataset.errorMsg || DEFAULT_MESSAGES.requiredCheck);
+        valid = false;
+      }
+      return;
+    }
+
+    const value = (el.value || '').trim();
+
+    if (isRequired && !value) {
+      showError(form, el.name, el.dataset.errorMsg || DEFAULT_MESSAGES.required);
+      valid = false;
+      return;
+    }
+    if (!value) return; // nepovinné a prázdné → OK
+
+    if (el.name === 'name' && value.length < 2) {
+      showError(form, el.name, DEFAULT_MESSAGES.short);
+      valid = false;
+      return;
+    }
+    if (rule === 'contact') {
+      const ok = EMAIL_RX.test(value) || PHONE_RX.test(value.replace(/\s/g, ''));
+      if (!ok) { showError(form, el.name, DEFAULT_MESSAGES.contact); valid = false; }
+    } else if (rule === 'email') {
+      if (!EMAIL_RX.test(value)) { showError(form, el.name, DEFAULT_MESSAGES.email); valid = false; }
+    }
+  });
 
   return valid;
 }
 
-function showError(fieldName, message) {
+function showError(form, fieldName, message) {
   const el = form.querySelector(`[data-error-for="${fieldName}"]`);
-  if (!el) return;
-  el.textContent = message;
-  el.hidden = false;
-  // Označ pole jako neplatné
+  if (el) {
+    el.textContent = message;
+    el.hidden = false;
+  }
   const input = form.elements[fieldName];
-  if (input) input.classList.add('is-invalid');
+  if (input && input.classList) input.classList.add('is-invalid');
 }
 
-function clearError(fieldName) {
+function clearError(form, fieldName) {
+  if (!fieldName) return;
   const el = form.querySelector(`[data-error-for="${fieldName}"]`);
   if (el) {
     el.hidden = true;
     el.textContent = '';
   }
   const input = form.elements[fieldName];
-  if (input) input.classList.remove('is-invalid');
+  if (input && input.classList) input.classList.remove('is-invalid');
 }

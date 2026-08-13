@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MFX-FLOW — Web pro řemeslníky za pár dní, ne za měsíce</title>
-<meta name="description" content="Webová agentura pro řemeslníky, malé firmy a poradce. Vlastní kód, ne šablona. Hotovo za 3–7 dní od 6 000 Kč." />
+<title>MFX-FLOW — Weby pro firmy a podnikatele za pár dní, ne za měsíce</title>
+<meta name="description" content="Webová agentura pro firmy, OSVČ a podnikatele. Vlastní kód, ne šablona. Hotovo za 3–7 dní od 9 000 Kč." />
+<link rel="canonical" href="https://mfx-flow.cz/" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +14,23 @@
 
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="liquid-glass.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "MFX-FLOW",
+  "description": "Webová agentura pro firmy, OSVČ a podnikatele. Vlastní kód, hotovo za 3–7 dní od 9 000 Kč.",
+  "url": "https://mfx-flow.cz/",
+  "areaServed": "CZ",
+  "priceRange": "9000–12000 Kč",
+  "address": { "@type": "PostalAddress", "addressLocality": "Zlín", "addressCountry": "CZ" },
+  "makesOffer": {
+    "@type": "Offer",
+    "itemOffered": { "@type": "Service", "name": "Tvorba webových stránek" }
+  }
+}
+</script>
 </head>
 <body>
 
@@ -49,10 +67,10 @@
   </a>
   <nav class="nav__menu" aria-label="Hlavní navigace">
     <a href="#o-nas">O nás</a>
-    <a href="#cena-necinnosti">Co stojí nemít web</a>
     <a href="#reseni">Balíčky</a>
     <a href="#portfolio">Ukázky</a>
-    <a href="#proces">Proces</a>
+    <a href="/affiliate">Affiliate</a>
+    <a href="/kurzy">Kurzy</a>
   </nav>
   <a href="#kontakt" class="nav__cta">
     <span>Domluvit hovor</span>
@@ -60,7 +78,31 @@
       <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </a>
+  <button class="nav__burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- ═══════════════ MOBILNÍ MENU (overlay) ═══════════════ -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav class="mobile-menu__nav" aria-label="Mobilní navigace">
+    <a href="#o-nas">O nás</a>
+    <a href="#reseni">Balíčky</a>
+    <a href="#portfolio">Ukázky</a>
+    <a href="/affiliate">Affiliate</a>
+    <a href="/kurzy">Kurzy</a>
+  </nav>
+  <a href="#kontakt" class="btn btn--primary mobile-menu__cta">
+    <span>Domluvit hovor</span>
+    <svg viewBox="0 0 14 14" width="12" height="12" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+<!-- Sticky mobilní CTA -->
+<a href="#kontakt" class="mobile-cta" aria-label="Domluvit hovor">
+  <span>Domluvit hovor</span>
+  <svg viewBox="0 0 14 14" width="13" height="13" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
 
 <!-- ═══════════════ HERO ═══════════════ -->
 <section id="hero" class="hero" data-screen-label="01 Hero">
@@ -121,8 +163,8 @@
   <div class="tldr__inner">
     <article class="tldr__col">
       <span class="mono tldr__lbl">PRO KOHO</span>
-      <h3>Řemeslníci · malé firmy · poradci</h3>
-      <p>Instalatéři, elektrikáři, truhláři, autoservisy. OSVČ a firmy do 5 lidí, které potřebují důvěryhodnou online vizitku.</p>
+      <h3>Firmy · OSVČ · podnikatelé</h3>
+      <p>Živnostníci, malé firmy, poradci i lokální provozovny. Kdokoli, kdo potřebuje důvěryhodnou online vizitku, na kterou se dá spolehnout.</p>
     </article>
     <article class="tldr__col">
       <span class="mono tldr__lbl">CO DOSTANEŠ</span>
@@ -131,8 +173,8 @@
     </article>
     <article class="tldr__col">
       <span class="mono tldr__lbl">ZA KOLIK A KDY</span>
-      <h3>Od 6 000 Kč · za 3 až 7 dní</h3>
-      <p>Tři balíčky s pevnou cenou. Záloha 50 % start, doplatek 50 % po předání. 14 dní úprav v ceně.</p>
+      <h3>Od 9 000 Kč · za 3 až 7 dní</h3>
+      <p>Dva balíčky s pevnou cenou. Záloha 50 % start, doplatek 50 % po předání. 2 kola revizí v ceně.</p>
     </article>
   </div>
 </section>
@@ -140,12 +182,12 @@
   <div class="marquee__track">
     <span>RYCHLE</span><span class="dot-sep">●</span>
     <span>VLASTNÍ KÓD</span><span class="dot-sep">●</span>
-    <span>OD 6 000 KČ</span><span class="dot-sep">●</span>
+    <span>OD 9 000 KČ</span><span class="dot-sep">●</span>
     <span>BEZ ZÁVAZKŮ</span><span class="dot-sep">●</span>
     <span>NEXT.JS · VERCEL</span><span class="dot-sep">●</span>
     <span>RYCHLE</span><span class="dot-sep">●</span>
     <span>VLASTNÍ KÓD</span><span class="dot-sep">●</span>
-    <span>OD 6 000 KČ</span><span class="dot-sep">●</span>
+    <span>OD 9 000 KČ</span><span class="dot-sep">●</span>
     <span>BEZ ZÁVAZKŮ</span><span class="dot-sep">●</span>
     <span>NEXT.JS · VERCEL</span><span class="dot-sep">●</span>
   </div>
@@ -161,7 +203,7 @@
         Webovka už za <em>tři dny</em>.
       </h2>
       <p>
-        Pomáháme řemeslníkům, malým firmám a poradcům dostat se na internet rychleji,
+        Pomáháme firmám, podnikatelům a živnostníkům dostat se na internet rychleji,
         než si stihnete dojít pro kafe. Zatímco klasická agentura vám napíše první návrh
         za měsíc, my máme v pátek live web na vaší doméně.
       </p>
@@ -207,104 +249,10 @@
   </div>
 </section>
 
-<!-- ═══════════════ CENA NEČINNOSTI ═══════════════ -->
-<section id="cena-necinnosti" class="cost" data-screen-label="03 Cena necinnosti">
-  <div class="section-head">
-    <span class="kicker"><span class="kicker__dash"></span><span class="mono">03 — CO STOJÍ NEMÍT WEB</span></span>
-    <h2 class="section-title">
-      Bez webu vás <em>nikdo nedohledá</em>.<br/>
-      Spočítejte si, co to znamená.
-    </h2>
-    <p class="section-lede">Modelový příklad: lokální řemeslník se průměrnou zakázkou 4 500 Kč. Čísla pochází z briefu prvních 10 klientů a veřejných dat Firmy.cz / Google Maps.</p>
-  </div>
-
-  <!-- Static credible breakdown -->
-  <div class="loss" id="loss-counter">
-    <header class="loss__head">
-      <span class="dot dot--ember"></span>
-      <span class="mono">MODELOVÝ MĚSÍC · ŘEMESLNÍK BEZ WEBU</span>
-    </header>
-    <div class="loss__rows">
-      <div class="loss__row">
-        <div class="loss__row-lbl">
-          <span class="mono">A</span>
-          <b>Ztracené poptávky z Googlu</b>
-          <small>~6 lidí měsíčně hledá vaši službu, najde konkurenci</small>
-        </div>
-        <div class="loss__row-num">≈ 9 000 Kč</div>
-      </div>
-      <div class="loss__row">
-        <div class="loss__row-lbl">
-          <span class="mono">B</span>
-          <b>Doporučení, které „vyšumí"</b>
-          <small>Soused doporučí, ale klient si vás nemůže ověřit → zvolí jiného</small>
-        </div>
-        <div class="loss__row-num">≈ 4 500 Kč</div>
-      </div>
-      <div class="loss__row">
-        <div class="loss__row-lbl">
-          <span class="mono">C</span>
-          <b>Čas v telefonu navíc</b>
-          <small>2 h / týden vysvětlování, co děláte a za kolik (≈ 350 Kč/h)</small>
-        </div>
-        <div class="loss__row-num">≈ 2 800 Kč</div>
-      </div>
-      <div class="loss__row loss__row--total">
-        <div class="loss__row-lbl">
-          <b>Měsíční dopad</b>
-          <small>Konzervativní odhad — u větších oborů typicky 2–3× víc</small>
-        </div>
-        <div class="loss__row-num loss__row-num--big">
-          <span id="loss-num">16 300</span><span class="mono">Kč / měs.</span>
-        </div>
-      </div>
-    </div>
-    <footer class="loss__foot mono" style="border-radius: 14px; width: 0px; height: 0px; padding: 14px 20px 14px 0px; margin: 16px 0px 10px">
-</footer>
-  </div>
-
-  <!-- vs comparison -->
-  <div class="vs">
-    <article class="vs__col vs__col--bad" style="gap: 0px">
-      <header>
-        <span class="vs__tag mono">BEZ WEBU</span>
-        <h3>Nedohledatelný.<br/>Nedoporučitelný.</h3>
-      </header>
-      <ul class="vs__list">
-        <li><b>—74 %</b> lidí ověřuje firmu na webu, než zavolá</li>
-        <li><b>—12</b> nevyřízených zpráv měsíčně z FB Messengeru</li>
-        <li><b>—3,2 h</b> denně v telefonu kvůli otázkám, které by zodpověděl web</li>
-        <li><b>0</b> pozic v Google na <span class="mono">"instalatér &lt;tvoje město&gt;"</span></li>
-        <li><b>—40 %</b> nižší vnímaná cena → klient smlouvá víc</li>
-      </ul>
-      <div class="vs__bar"><span style="--w: 88%"></span><span class="mono">VYTÍŽENÍ ČASU 88 %</span></div>
-    </article>
-
-    <div class="vs__divider" aria-hidden="true">
-      <span class="mono">vs.</span>
-    </div>
-
-    <article class="vs__col vs__col--good">
-      <header>
-        <span class="vs__tag mono">S WEBEM OD MFX-FLOW</span>
-        <h3>Dohledatelný.<br/>Připravený. Důvěryhodný.</h3>
-      </header>
-      <ul class="vs__list">
-        <li><b>+24 h / den</b> aktivní vizitka, i když spíš nebo jsi na střeše</li>
-        <li><b>+38 %</b> více poptávek z lokálního Google během 90 dní</li>
-        <li><b>—2,4 h / den</b> ušetřených v telefonu — formulář filtruje</li>
-        <li><b>+1×</b> jeden link, který nahradí 6 různých Facebook profilů</li>
-        <li><b>+18 %</b> vyšší cena za stejnou práci díky reputaci</li>
-      </ul>
-      <div class="vs__bar vs__bar--good"><span style="--w: 32%"></span><span class="mono">VYTÍŽENÍ ČASU 32 %</span></div>
-    </article>
-  </div>
-</section>
-
 <!-- ═══════════════ HLEDÁ TĚ NĚKDO? — search comparison ═══════════════ -->
 <section id="prilezitosti" class="opps" data-screen-label="04 Prilezitosti">
   <div class="section-head section-head--center">
-    <span class="kicker"><span class="kicker__dash"></span><span class="mono">04 — KAM SE ZTRÁCÍ POPTÁVKY</span></span>
+    <span class="kicker"><span class="kicker__dash"></span><span class="mono">03 — KAM SE ZTRÁCÍ POPTÁVKY</span></span>
     <h2 class="section-title">
       Když tě někdo zadá do <em>Googlu</em>,<br/>
       vidí tohle.
@@ -319,23 +267,23 @@
   <div class="serp">
     <article class="serp__col serp__col--bad">
       <header>
-        <span class="serp__tag mono">⌕ instalatér Brno · BEZ WEBU</span>
+        <span class="serp__tag mono">⌕ &lt;tvoje služba&gt; &lt;tvoje město&gt; · BEZ WEBU</span>
       </header>
       <ol class="serp__results">
         <li class="serp__item is-other">
-          <div class="serp__title">Instalatér Tomáš Černý</div>
-          <div class="serp__url mono">cerny-instalater.cz</div>
-          <div class="serp__desc">Voda, topení, plyn — Brno a okolí. Zdarma cenová nabídka do 24 h…</div>
+          <div class="serp__title">Konkurence A s.r.o.</div>
+          <div class="serp__url mono">konkurence-a.cz</div>
+          <div class="serp__desc">Rychle, spolehlivě, ve tvém městě a okolí. Nezávazná nabídka do 24 h…</div>
         </li>
         <li class="serp__item is-other">
-          <div class="serp__title">PRIMA Instalace s.r.o.</div>
-          <div class="serp__url mono">prima-instalace.cz</div>
-          <div class="serp__desc">Komplexní vodoinstalace pro domácnosti i firmy. 24/7 havarijní servis…</div>
+          <div class="serp__title">Profi Služby CZ</div>
+          <div class="serp__url mono">profi-sluzby.cz</div>
+          <div class="serp__desc">Komplexní služby pro domácnosti i firmy. Ověřené reference, online objednávka…</div>
         </li>
         <li class="serp__item is-other">
-          <div class="serp__title">Aquaservis Morava</div>
-          <div class="serp__url mono">aquaservis-morava.cz</div>
-          <div class="serp__desc">15 let na trhu. Tepelná čerpadla, kotle, rozvody. Online rezervace.</div>
+          <div class="serp__title">Novák &amp; syn</div>
+          <div class="serp__url mono">novak-a-syn.cz</div>
+          <div class="serp__desc">15 let na trhu. Férové ceny, práce na míru. Rezervace online.</div>
         </li>
         <li class="serp__item is-empty">
           <div class="serp__placeholder">
@@ -348,29 +296,29 @@
 
     <article class="serp__col serp__col--good">
       <header>
-        <span class="serp__tag mono">⌕ instalatér Brno · S WEBEM OD MFX-FLOW</span>
+        <span class="serp__tag mono">⌕ &lt;tvoje služba&gt; &lt;tvoje město&gt; · S WEBEM OD MFX-FLOW</span>
       </header>
       <ol class="serp__results">
         <li class="serp__item is-you">
           <span class="serp__badge mono">★ TY</span>
-          <div class="serp__title">Instalatérství Novák — voda · topení · havárie</div>
-          <div class="serp__url mono">novak-instalater.cz</div>
-          <div class="serp__desc">Brno a okolí, do 90 minut na adrese. Pojízdná dílna, 20 let praxe. Volat: 777 …</div>
+          <div class="serp__title">Tvoje firma — přesně to, co zákazník hledá</div>
+          <div class="serp__url mono">tvoje-firma.cz</div>
+          <div class="serp__desc">Tvoje město a okolí, rychlá reakce. Roky praxe, jasné ceny, kontakt na jedno kliknutí…</div>
         </li>
         <li class="serp__item is-other">
-          <div class="serp__title">Instalatér Tomáš Černý</div>
-          <div class="serp__url mono">cerny-instalater.cz</div>
-          <div class="serp__desc">Voda, topení, plyn — Brno a okolí…</div>
+          <div class="serp__title">Konkurence A s.r.o.</div>
+          <div class="serp__url mono">konkurence-a.cz</div>
+          <div class="serp__desc">Rychle, spolehlivě, ve tvém městě a okolí…</div>
         </li>
         <li class="serp__item is-other">
-          <div class="serp__title">PRIMA Instalace s.r.o.</div>
-          <div class="serp__url mono">prima-instalace.cz</div>
-          <div class="serp__desc">Komplexní vodoinstalace pro domácnosti i firmy…</div>
+          <div class="serp__title">Profi Služby CZ</div>
+          <div class="serp__url mono">profi-sluzby.cz</div>
+          <div class="serp__desc">Komplexní služby pro domácnosti i firmy…</div>
         </li>
         <li class="serp__item is-other">
-          <div class="serp__title">Aquaservis Morava</div>
-          <div class="serp__url mono">aquaservis-morava.cz</div>
-          <div class="serp__desc">15 let na trhu. Tepelná čerpadla, kotle, rozvody…</div>
+          <div class="serp__title">Novák &amp; syn</div>
+          <div class="serp__url mono">novak-a-syn.cz</div>
+          <div class="serp__desc">15 let na trhu. Férové ceny, práce na míru…</div>
         </li>
       </ol>
     </article>
@@ -398,83 +346,60 @@
 
 <!-- ═══════════════ ŘEŠENÍ ═══════════════ -->
 <section id="reseni" class="solution" data-screen-label="05 Reseni">
-  <div class="solution__bg">
-    <canvas id="orb-canvas" aria-hidden="true"></canvas>
-  </div>
+  <div class="solution__bg solution__bg--css" aria-hidden="true"></div>
 
   <div class="section-head section-head--center solution__head">
-    <span class="kicker"><span class="kicker__dash"></span><span class="mono">05 — BALÍČKY</span></span>
+    <span class="kicker"><span class="kicker__dash"></span><span class="mono">04 — BALÍČKY</span></span>
     <h2 class="section-title">
-      Tři balíčky.<br/>Žádné <em>překvapení</em> ve faktuře.
+      Dva balíčky.<br/>Žádné <em>překvapení</em> ve faktuře.
     </h2>
     <p class="section-lede">
       Vyber, co potřebuješ teď. Postupně se dá rozšířit — kód je tvůj, žádný měsíční poplatek za to že web existuje.
     </p>
   </div>
 
-  <div class="pkgs">
+  <div class="pkgs pkgs--two">
     <article class="pkg lg" data-glass>
       <div class="lg__refract" aria-hidden="true"></div>
       <header class="pkg__head">
-        <span class="mono">VIZITKA</span>
+        <span class="mono">JEDNOSTRÁNKOVÝ WEB</span>
         <span class="pkg__time mono">3–5 DNÍ</span>
       </header>
       <div class="pkg__price">
-        <span class="pkg__num">6 000</span>
+        <span class="pkg__num">9 000</span>
         <span class="pkg__cur mono">Kč</span>
       </div>
-      <p class="pkg__lede">One-page web s telefonem, službami a referencemi. Pro toho, kdo chce být <em>k nalezení</em>.</p>
+      <p class="pkg__lede">One-page web na míru s poptávkovým formulářem. Pro toho, kdo chce být <em>k nalezení</em> a sbírat poptávky.</p>
       <ul class="pkg__list">
-        <li>1 stránka, 6 sekcí</li>
+        <li>1 stránka na míru, všechny klíčové sekce</li>
+        <li>Poptávkový formulář (leady rovnou k tobě)</li>
         <li>Plně responzivní design</li>
         <li>Základní SEO + Google Maps</li>
-        <li>Hosting na Vercel </li>
-        <li>14 dní podpory</li>
+        <li>Hosting na Vercel + 2 kola revizí</li>
       </ul>
-      <a href="#kontakt" class="pkg__cta">Začít s Vizitkou →</a>
+      <a href="#kontakt" class="pkg__cta">Chci jednostránkový →</a>
     </article>
 
     <article class="pkg pkg--featured lg lg--strong" data-glass>
       <div class="lg__refract" aria-hidden="true"></div>
-      <span class="pkg__badge mono">★ NEJOBLÍBENĚJŠÍ</span>
+      <span class="pkg__badge mono">★ DOPORUČENO</span>
       <header class="pkg__head">
-        <span class="mono">WEB S DOTAZNÍKEM</span>
+        <span class="mono">VÍCESTRÁNKOVÝ WEB</span>
         <span class="pkg__time mono">5–7 DNÍ</span>
       </header>
       <div class="pkg__price">
-        <span class="pkg__num">8 000</span>
+        <span class="pkg__num">12 000</span>
         <span class="pkg__cur mono">Kč</span>
       </div>
-      <p class="pkg__lede">Vše z Vizitky + funkční formulář. Web pracuje za tebe — i v noci, i o víkendu.</p>
+      <p class="pkg__lede">Vše z jednostránkového + více stránek a texty na míru. Pro firmy, které mají <em>příběh</em> k vyprávění.</p>
       <ul class="pkg__list">
-        <li>Vše z Vizitky</li>
-        <li>Poptávkový formulář (Resend)</li>
-        <li>Anti-spam + validace polí</li>
-        <li>Děkovná stránka + e-mail notifikace</li>
-        <li>1× revize po týdnu provozu</li>
+        <li>Vše z jednostránkového webu</li>
+        <li>Až 5 stránek (o mně, služby, reference…)</li>
+        <li>Texty na míru z tvého briefu</li>
+        <li>Pokročilé SEO + Schema.org + OG image</li>
+        <li>30 dní podpory po spuštění</li>
       </ul>
-      <a href="#kontakt" class="pkg__cta">Vybrat Dotazník →</a>
-    </article>
-
-    <article class="pkg lg" data-glass>
-      <div class="lg__refract" aria-hidden="true"></div>
-      <header class="pkg__head">
-        <span class="mono">ROZŠÍŘENÝ</span>
-        <span class="pkg__time mono">7–14 DNÍ</span>
-      </header>
-      <div class="pkg__price">
-        <span class="pkg__num">12 000+</span>
-        <span class="pkg__cur mono">Kč</span>
-      </div>
-      <p class="pkg__lede">Víc stránek, galerie, blog, lehký CMS. Pro firmy, které mají <em>příběh</em> k vyprávění.</p>
-      <ul class="pkg__list">
-        <li>Až 5 stránek + galerie</li>
-        <li>Schema.org + pokročilé SEO</li>
-        <li>Editace obsahu klientem (MDX)</li>
-        <li>Newsletter signup (volitelně)</li>
-        <li>30 dní podpory</li>
-      </ul>
-      <a href="#kontakt" class="pkg__cta">Postavit Rozšířený →</a>
+      <a href="#kontakt" class="pkg__cta">Chci vícestránkový →</a>
     </article>
   </div>
 
@@ -486,89 +411,51 @@
 <!-- ═══════════════ PORTFOLIO / UKÁZKY ═══════════════ -->
 <section id="portfolio" class="folio" data-screen-label="06 Portfolio">
   <div class="section-head">
-    <span class="kicker"><span class="kicker__dash"></span><span class="mono">06 — UKÁZKY STYLU</span></span>
+    <span class="kicker"><span class="kicker__dash"></span><span class="mono">05 — PORTFOLIO</span></span>
     <h2 class="section-title">
-      Tři ukázky stylu.<br/>
-      Tři <em>obory</em>. Tři <em>balíčky</em>.
+      Portfolio.<br/>
+      První <em>realizace</em>.
     </h2>
     <p class="section-lede">
-      Vizualizace, jak by mohl vypadat tvůj web. Každý projekt stavíme na míru —
-      vlastní tón, vlastní fotky, vlastní barvy. Žádný neutrální „template feeling".
-      Pohni myší nad ukázkou.
+      MFX-FLOW je nová agentura — portfolio roste s každou zakázkou. Tady je začátek.
+      Žádní vymyšlení klienti, jen skutečná práce. Chceš být jedna z prvních referencí?
     </p>
   </div>
 
-  <div class="folio-grid">
-    <article class="folio-card" data-tilt data-glow style="--base:220;--spread:200">
-      <span class="demo-badge">Ukázkový projekt</span>
+  <div class="folio-grid folio-grid--two">
+    <a class="folio-card" href="https://stability-point.cz" target="_blank" rel="noopener" data-tilt data-glow style="--base:200;--spread:220">
       <div class="folio-card__inner">
         <div class="folio-card__device">
-          <div class="folio-card__bar"><i></i><i></i><i></i><span class="mono">novak-instalater.cz</span></div>
-          <div class="folio-card__screen folio-card__screen--a">
-            <div class="fc-hero">
-              <span class="mono fc-eyebrow">INSTALATÉRSTVÍ NOVÁK · BRNO</span>
-              <h3>Voda teče.<br/>Topí to.<br/>Hotovo.</h3>
-              <div class="fc-cta"><span>Volat</span></div>
-            </div>
-            <div class="fc-strip"><span></span><span></span><span></span></div>
+          <div class="folio-card__bar"><i></i><i></i><i></i><span class="mono">stability-point.cz</span></div>
+          <div class="folio-card__screen folio-card__screen--shot">
+            <img class="folio-card__shot" src="assets/portfolio/stability-point.jpg" alt="Náhled webu Stability Point — finanční poradenství" loading="lazy" width="1000" height="1111" />
           </div>
         </div>
       </div>
-      <footer class="folio-card__meta">
-        <div><b>Instalatérství Novák</b><span class="mono">VIZITKA · 6 000 KČ · 4 DNY</span></div>
-        <span class="folio-card__pill mono">★ 5,0</span>
-      </footer>
-    </article>
+      <div class="folio-card__meta">
+        <div><b>Stability Point</b><span class="mono">FINANČNÍ PORADCE · WEB NA MÍRU</span></div>
+        <span class="folio-card__pill mono">Otevřít web →</span>
+      </div>
+    </a>
 
-    <article class="folio-card" data-tilt data-glow style="--base:220;--spread:200">
-      <span class="demo-badge">Ukázkový projekt</span>
+    <a class="folio-card" href="#hero" data-tilt data-glow style="--base:220;--spread:200">
       <div class="folio-card__inner">
         <div class="folio-card__device">
-          <div class="folio-card__bar"><i></i><i></i><i></i><span class="mono">truhlarstvi-kvicala.cz</span></div>
-          <div class="folio-card__screen folio-card__screen--b">
-            <div class="fc-hero fc-hero--b">
-              <span class="mono fc-eyebrow">RUČNÍ TRUHLÁŘSTVÍ · OD 1998</span>
-              <h3>Dřevo,<br/>které <em>přežije</em>.</h3>
-              <div class="fc-form">
-                <span class="mono">POPTÁVKA</span>
-                <i></i><i></i>
-                <span class="fc-btn">Odeslat →</span>
-              </div>
-            </div>
+          <div class="folio-card__bar"><i></i><i></i><i></i><span class="mono">mfx-flow.cz</span></div>
+          <div class="folio-card__screen folio-card__screen--shot">
+            <img class="folio-card__shot" src="assets/portfolio/mfx-flow.jpg" alt="Náhled webu MFX-FLOW — webová agentura" loading="lazy" width="1000" height="1111" />
           </div>
         </div>
       </div>
-      <footer class="folio-card__meta">
-        <div><b>Truhlářství Kvíčala</b><span class="mono">DOTAZNÍK · 8 000 KČ · 6 DNÍ</span></div>
-        <span class="folio-card__pill mono">★ 5,0</span>
-      </footer>
-    </article>
-
-    <article class="folio-card" data-tilt data-glow style="--base:220;--spread:200">
-      <span class="demo-badge">Ukázkový projekt</span>
-      <div class="folio-card__inner">
-        <div class="folio-card__device">
-          <div class="folio-card__bar"><i></i><i></i><i></i><span class="mono">poradce-svoboda.cz</span></div>
-          <div class="folio-card__screen folio-card__screen--c">
-            <div class="fc-hero fc-hero--c">
-              <span class="mono fc-eyebrow">FINANČNÍ PORADCE · PRAHA</span>
-              <h3>Hypotéka<br/>bez <em>stresu</em>.</h3>
-              <div class="fc-grid">
-                <div></div><div></div><div></div><div></div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="folio-card__meta">
+        <div><b>MFX-FLOW</b><span class="mono">VLASTNÍ PROJEKT · TENTO WEB</span></div>
+        <span class="folio-card__pill mono">Nahoru ↑</span>
       </div>
-      <footer class="folio-card__meta">
-        <div><b>Tomáš Svoboda Finance</b><span class="mono">ROZŠÍŘENÝ · 12 000 KČ · 11 DNÍ</span></div>
-        <span class="folio-card__pill mono">★ 5,0</span>
-      </footer>
-    </article>
+    </a>
   </div>
 
   <p class="folio-note mono">
-    * Demo projekty — fiktivní klienti, ukazují styl a možnosti. Tvůj web bude originál.
+    * Klikni na kartu a prohlédni si web naživo. Portfolio dál roste s každou zakázkou.
   </p>
 </section>
 
@@ -576,40 +463,40 @@
 <section id="proces" class="process" data-screen-label="07 Proces">
   <div class="process__top">
     <div class="section-head section-head--inline">
-      <span class="kicker"><span class="kicker__dash"></span><span class="mono">07 — JAK TO FUNGUJE</span></span>
+      <span class="kicker"><span class="kicker__dash"></span><span class="mono">06 — JAK TO FUNGUJE</span></span>
       <h2 class="section-title">
-        Od telefonu k živému webu<br/>za <em>jeden týden</em>.
+        Od poptávky k živému webu<br/>za <em>pár dní</em>.
       </h2>
     </div>
-    <div class="process__stage">
-      <canvas id="laptop-canvas" aria-hidden="true"></canvas>
+    <div class="process__stage process__stage--css">
+      <div class="process__stage-glow" aria-hidden="true"></div>
       <div class="process__stage-label mono">LIVE PREVIEW · /preview/build</div>
     </div>
   </div>
 
   <ol class="steps">
     <li class="step" data-glow style="--base:280;--spread:300">
-      <div class="step__num mono">01 / PONDĚLÍ</div>
-      <h4>15min hovor</h4>
-      <p>Zjistím, co děláš, kdo jsou klienti, jaký jazyk používáš. Posílám brief a cenovku ten samý den.</p>
-      <div class="step__tag mono">CALL · 15 min</div>
+      <div class="step__num mono">01 / POPTÁVKA</div>
+      <h4>Poptávka &amp; brief</h4>
+      <p>Ozvu se do 24 hodin. Pošlu ti krátký brief (pár otázek) nebo si zavoláme — ať vím, co děláš, pro koho a jaký tón. Odsouhlasíme rozsah, cenu i termín.</p>
+      <div class="step__tag mono">ODPOVĚĎ DO 24 H</div>
     </li>
     <li class="step" data-glow style="--base:280;--spread:300">
-      <div class="step__num mono">02 / ÚTERÝ</div>
-      <h4>Návrh + první preview</h4>
-      <p>Připravím wireframe a první verzi designu. Posílám odkaz, který se průběžně updatuje.</p>
-      <div class="step__tag mono">FIGMA · PREVIEW</div>
+      <div class="step__num mono">02 / NÁVRH</div>
+      <h4>Návrh designu</h4>
+      <p>Z briefu připravím návrh vzhledu a strukturu webu. Pošlu ti náhled a společně doladíme tón, barvy i sekce, než se začne stavět.</p>
+      <div class="step__tag mono">DESIGN · NÁHLED</div>
     </li>
     <li class="step" data-glow style="--base:280;--spread:300">
-      <div class="step__num mono">03 / ST–ČT</div>
-      <h4>Build + texty</h4>
-      <p>Stavím web, doplňuji texty, optimalizuji rychlost. Ty schvaluješ jednoduchými komentáři v náhledu.</p>
-      <div class="step__tag mono">NEXT.JS · VERCEL</div>
+      <div class="step__num mono">03 / BUILD</div>
+      <h4>Build na míru</h4>
+      <p>Postavím web — sekce, texty, poptávkový formulář, SEO i rychlost. Průběžně vidíš živý náhled na preview odkazu.</p>
+      <div class="step__tag mono">STAVBA · ŽIVÝ NÁHLED</div>
     </li>
     <li class="step" data-glow style="--base:280;--spread:300">
-      <div class="step__num mono">04 / PÁTEK</div>
-      <h4>Spuštění + předání</h4>
-      <p>Web jde live na tvou doménu. 14 dní drobných úprav v ceně.</p>
+      <div class="step__num mono">04 / SPUŠTĚNÍ</div>
+      <h4>Schválení &amp; spuštění</h4>
+      <p>Projdeš preview a pošleš připomínky — 2 kola revizí jsou v ceně. Pak web jde live na tvou doménu: předání přístupů a faktura se splatností 14 dní.</p>
       <div class="step__tag mono">LIVE · DOMÉNA · PŘEDÁNÍ</div>
     </li>
   </ol>
@@ -617,19 +504,19 @@
 
 <!-- ═══════════════ REFERENCE ═══════════════ -->
 <section id="reference" class="proof" data-screen-label="08 Reference">
-  <div class="proof__globe">
-    <canvas id="globe-canvas" aria-hidden="true"></canvas>
+  <div class="proof__globe proof__globe--css">
+    <div class="proof__globe-orb" aria-hidden="true"></div>
     <div class="proof__globe-overlay">
       <span class="mono">5 MĚSÍCŮ DENNÍ PRÁCE S AI NÁSTROJI · ČR</span>
     </div>
   </div>
   <div class="section-head section-head--center">
-    <span class="kicker"><span class="kicker__dash"></span><span class="mono">08 — DŮVĚRA</span></span>
+    <span class="kicker"><span class="kicker__dash"></span><span class="mono">07 — DŮVĚRA</span></span>
     <h2 class="section-title">
       Stavíme novou agenturu —<br/>tady je, na čem to <em>stojí</em>.
     </h2>
     <p class="section-lede">
-      MFX-FLOW je nová agentura. Místo falešných referencí ukazujeme reálné principy, na kterých stavíme, a první pilotní spolupráce.
+      MFX-FLOW je nová agentura. Místo vymyšlených referencí ukazujeme reálné principy, na kterých stavíme.
     </p>
   </div>
 
@@ -652,44 +539,13 @@
     </div>
   </div>
 
-  <div class="testis">
-    <figure class="testi">
-      <blockquote>
-        „Hledal jsem někoho, kdo mi udělá web bez toho, aby si ze mě dělal blázny.
-        Domluvili jsme se v pondělí, v pátek mi volali první lidi z Googlu."
-      </blockquote>
-      <figcaption>
-        <span class="testi__avatar" aria-hidden="true">PN</span>
-        <div>
-          <b>Pavel N.</b><br/>
-          <span class="mono">PILOTNÍ KLIENT · ELEKTROINSTALACE · BLANSKO</span>
-        </div>
-      </figcaption>
-    </figure>
-
-    <figure class="testi">
-      <blockquote>
-        „Web vypadá jako od velký pražský agentury. Cena ale jako za poctivou práci po sousedsku.
-        To je přesně, co řemeslo potřebuje."
-      </blockquote>
-      <figcaption>
-        <span class="testi__avatar" aria-hidden="true">JK</span>
-        <div>
-          <b>Jana K.</b><br/>
-          <span class="mono">PILOTNÍ KLIENTKA · TRUHLÁŘSTVÍ · VYŠKOV</span>
-        </div>
-      </figcaption>
-    </figure>
-  </div>
-
-  <p class="proof-note mono">* Pilotní klienti, ceny dle programu „prvních 5". Plná case study po dokončení projektu.</p>
 </section>
 
 <!-- ═══════════════ CTA ═══════════════ -->
 <section id="kontakt" class="cta" data-screen-label="09 CTA">
   <div class="cta__inner">
     <div class="cta__copy">
-      <span class="kicker"><span class="kicker__dash"></span><span class="mono">09 — DALŠÍ KROK</span></span>
+      <span class="kicker"><span class="kicker__dash"></span><span class="mono">08 — DALŠÍ KROK</span></span>
       <h2 class="section-title">
         15 minut hovoru.<br/>
         Žádný <em>závazek</em>.
@@ -711,7 +567,7 @@
       </div>
     </div>
 
-    <form class="cta__form lg lg--strong" data-glass id="lead-form" novalidate>
+    <form class="cta__form lg lg--strong" data-glass id="lead-form" data-mfx-form data-form-type="lead" novalidate>
       <div class="lg__refract" aria-hidden="true"></div>
       <div class="cta__form-head">
         <span class="mono">→ NEZÁVAZNÁ POPTÁVKA</span>
@@ -732,22 +588,21 @@
       </label>
       <label>
         <span class="mono">TELEFON / E-MAIL</span>
-        <input type="text" name="contact" required placeholder="+420 777 ... nebo e-mail" autocomplete="email" />
+        <input type="text" name="contact" required data-validate="contact" placeholder="+420 777 ... nebo e-mail" autocomplete="email" />
         <small class="form-error" data-error-for="contact" hidden></small>
       </label>
       <label>
         <span class="mono">CO POTŘEBUJEŠ?</span>
         <select name="kind">
-          <option>Vizitka — 6 000 Kč</option>
-          <option selected>Web s dotazníkem — 8 000 Kč</option>
-          <option>Rozšířený — 12 000 Kč</option>
+          <option>Jednostránkový web — 9 000 Kč</option>
+          <option selected>Vícestránkový web — 12 000 Kč</option>
           <option>Ještě nevím, poradíme</option>
         </select>
       </label>
 
       <label class="cta__gdpr">
         <input type="checkbox" name="gdpr" required />
-        <span>Souhlasím se zpracováním kontaktních údajů pro účely vyřízení této poptávky. Údaje nikam nepředávám, neukládám déle, než je třeba.</span>
+        <span>Souhlasím se zpracováním kontaktních údajů pro účely vyřízení této poptávky dle <a href="/zasady-ochrany-osobnich-udaju">zásad ochrany osobních údajů</a>.</span>
         <small class="form-error" data-error-for="gdpr" hidden></small>
       </label>
 
@@ -792,15 +647,15 @@
   <div class="footer__cols">
     <div>
       <span class="mono footer__lbl">PRODUKT</span>
-      <a href="#reseni">Vizitka — 6 000 Kč</a>
-      <a href="#reseni">Dotazník — 8 000 Kč</a>
-      <a href="#reseni">Rozšířený — 12 000+ Kč</a>
+      <a href="#reseni">Jednostránkový web — 9 000 Kč</a>
+      <a href="#reseni">Vícestránkový web — 12 000 Kč</a>
+      <a href="/kurzy">Kurzy — Postav si web s AI</a>
     </div>
     <div>
       <span class="mono footer__lbl">FIRMA</span>
-      <a href="#cena-necinnosti">Cena nečinnosti</a>
       <a href="#proces">Jak pracujeme</a>
       <a href="#reference">Reference</a>
+      <a href="/affiliate">Affiliate — doporuč a vydělej</a>
     </div>
     <div>
       <span class="mono footer__lbl">KONTAKT</span>
@@ -809,11 +664,21 @@
       <a href="#kontakt">Domluvit hovor</a>
     </div>
     <div>
-      <span class="mono footer__lbl">TECHNOLOGIE</span>
-      <span>Next.js 15 · App Router</span>
-      <span>Tailwind · TypeScript</span>
-      <span>Vercel · Resend</span>
+      <span class="mono footer__lbl">PRÁVNÍ</span>
+      <a href="/zasady-ochrany-osobnich-udaju">Ochrana osobních údajů</a>
+      <a href="/obchodni-podminky">Obchodní podmínky</a>
+      <a href="/podminky-affiliate">Podmínky affiliate</a>
+      <a href="/podminky-kurzu">Podmínky kurzů</a>
     </div>
+  </div>
+
+  <div class="footer__legal mono">
+    <span class="footer__lbl">PROVOZOVATEL</span>
+    <p>
+      [DOPLNIT: Jméno a příjmení provozovatele] · IČO: [DOPLNIT] · se sídlem [DOPLNIT].
+      Ceny jsou uvedeny jako konečné; [DOPLNIT: provozovatel není plátcem DPH / ceny jsou vč. DPH].
+      Kontakt: <a href="mailto:mojzisekf@gmail.com">mojzisekf@gmail.com</a>.
+    </p>
   </div>
 
   <div class="footer__bottom mono">
@@ -823,9 +688,9 @@
   </div>
 </footer>
 
-<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-<script src="app.js"></script>
-<script src="liquid-glass.js"></script>
+<script defer src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script defer src="app.js"></script>
+<script defer src="liquid-glass.js"></script>
 <script type="module" src="/form.js"></script>
 </body>
 </html>

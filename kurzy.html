@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kurzy — Postav si web s AI | MFX-FLOW</title>
+<meta name="description" content="Připravujeme kurz, ve kterém se naučíš stavět weby pomocí AI nástrojů — od nuly po live web. Zapiš se do waitlistu a dáme ti vědět při spuštění." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://mfx-flow.cz/kurzy" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&f[]=general-sans@600,500,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="liquid-glass.css" />
+</head>
+<body>
+
+<!-- ═══════════════ LIQUID GLASS · SVG displacement filter ═══════════════ -->
+<svg class="lg-defs" aria-hidden="true" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <filter id="lg-refract" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="3" result="turb"/>
+      <feGaussianBlur in="turb" stdDeviation="1.2" result="softTurb"/>
+      <feDisplacementMap in="SourceGraphic" in2="softTurb" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="lg-refract-strong" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="2" seed="7" result="turb"/>
+      <feGaussianBlur in="turb" stdDeviation="0.8" result="softTurb"/>
+      <feDisplacementMap in="SourceGraphic" in2="softTurb" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<header class="nav lg">
+  <a href="/" class="nav__brand" aria-label="MFX-FLOW">
+    <svg class="nav__mark" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <linearGradient id="nav-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#7CC8FF"/>
+          <stop offset="1" stop-color="#3568D4"/>
+        </linearGradient>
+      </defs>
+      <path d="M6 38 C 14 22, 22 22, 32 38 S 50 54, 58 38" stroke="url(#nav-grad)" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+      <path d="M6 28 C 14 12, 22 12, 32 28 S 50 44, 58 28" stroke="url(#nav-grad)" stroke-width="3.2" stroke-linecap="round" fill="none" opacity="0.55"/>
+    </svg>
+    <span class="nav__wordmark">MFX-FLOW</span>
+  </a>
+  <nav class="nav__menu" aria-label="Hlavní navigace">
+    <a href="/#o-nas">O nás</a>
+    <a href="/#reseni">Balíčky</a>
+    <a href="/#portfolio">Ukázky</a>
+    <a href="/affiliate">Affiliate</a>
+    <a href="/kurzy" aria-current="page">Kurzy</a>
+  </nav>
+  <a href="#waitlist" class="nav__cta">
+    <span>Chci vědět první</span>
+    <svg viewBox="0 0 14 14" width="12" height="12" aria-hidden="true">
+      <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <button class="nav__burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ═══════════════ MOBILNÍ MENU (overlay) ═══════════════ -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav class="mobile-menu__nav" aria-label="Mobilní navigace">
+    <a href="/#o-nas">O nás</a>
+    <a href="/#reseni">Balíčky</a>
+    <a href="/#portfolio">Ukázky</a>
+    <a href="/affiliate">Affiliate</a>
+    <a href="/kurzy" aria-current="page">Kurzy</a>
+  </nav>
+  <a href="#waitlist" class="btn btn--primary mobile-menu__cta">
+    <span>Zapsat do waitlistu</span>
+    <svg viewBox="0 0 14 14" width="12" height="12" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+<!-- Sticky mobilní CTA -->
+<a href="#waitlist" class="mobile-cta" aria-label="Zapsat do waitlistu">
+  <span>Zapsat do waitlistu</span>
+  <svg viewBox="0 0 14 14" width="13" height="13" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+
+<main class="subpage">
+
+  <!-- ═══════════════ SUBHERO ═══════════════ -->
+  <section class="subhero">
+    <div class="subhero__inner">
+      <span class="kicker"><span class="kicker__dash"></span><span class="mono">KURZY · PŘIPRAVUJEME</span></span>
+      <span class="soon-badge mono">▲ PŘIPRAVUJEME</span>
+      <h1 class="subhero__title">Postav si web <em>s AI</em>.</h1>
+      <p class="subhero__lede">
+        Chystám kurz, ve kterém tě krok za krokem naučím stavět skutečné weby pomocí AI nástrojů —
+        stejně, jako je stavím já. Od prázdné složky po live web na vlastní doméně.
+        Kurz zatím vzniká; níže je osnova a můžeš se zapsat do waitlistu.
+      </p>
+      <div class="subhero__cta">
+        <a href="#waitlist" class="btn btn--primary btn--glass">
+          <span>Zapsat do waitlistu</span>
+          <svg viewBox="0 0 14 14" width="12" height="12" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ OSNOVA ═══════════════ -->
+  <section class="folio" id="osnova" aria-label="Osnova kurzu">
+    <div class="section-head">
+      <span class="kicker"><span class="kicker__dash"></span><span class="mono">CO SE NAUČÍŠ</span></span>
+      <h2 class="section-title">Od <em>nuly</em> po <em>live web</em>.</h2>
+      <p class="section-lede">
+        Osnova se ještě dolaďuje, ale takhle bude kurz zhruba vypadat. Cíl: umět si sám postavit
+        a nasadit web, který vypadá profesionálně a rychle se načítá.
+      </p>
+    </div>
+
+    <div class="pkgs">
+      <article class="pkg lg" data-glass>
+        <div class="lg__refract" aria-hidden="true"></div>
+        <header class="pkg__head">
+          <span class="mono">MODUL 01</span>
+          <span class="pkg__time mono">ZÁKLADY</span>
+        </header>
+        <h3 class="pkg__num" style="font-size:1.5rem">Nástroje &amp; nastavení</h3>
+        <p class="pkg__lede">Claude Code, editor, Node, Git. Jak si připravit prostředí, aby ti AI reálně pomáhala.</p>
+        <ul class="pkg__list">
+          <li>Co je AI-assisted vývoj</li>
+          <li>Instalace a první projekt</li>
+          <li>Jak dávat AI dobré zadání</li>
+        </ul>
+      </article>
+
+      <article class="pkg pkg--featured lg lg--strong" data-glass>
+        <div class="lg__refract" aria-hidden="true"></div>
+        <span class="pkg__badge mono">★ JÁDRO KURZU</span>
+        <header class="pkg__head">
+          <span class="mono">MODUL 02</span>
+          <span class="pkg__time mono">STAVBA</span>
+        </header>
+        <h3 class="pkg__num" style="font-size:1.5rem">Postav web krok za krokem</h3>
+        <p class="pkg__lede">Od struktury po hotové sekce — design, texty, responzivita, formulář.</p>
+        <ul class="pkg__list">
+          <li>Struktura a sekce webu</li>
+          <li>Design, který působí profi</li>
+          <li>Formulář a napojení na data</li>
+          <li>Rychlost a SEO základ</li>
+        </ul>
+      </article>
+
+      <article class="pkg lg" data-glass>
+        <div class="lg__refract" aria-hidden="true"></div>
+        <header class="pkg__head">
+          <span class="mono">MODUL 03</span>
+          <span class="pkg__time mono">NASAZENÍ</span>
+        </header>
+        <h3 class="pkg__num" style="font-size:1.5rem">Live web &amp; doména</h3>
+        <p class="pkg__lede">Nasazení na Vercel, vlastní doména, a co dělat, když chceš z webů žít.</p>
+        <ul class="pkg__list">
+          <li>Deploy na Vercel</li>
+          <li>Vlastní doména a e-mail</li>
+          <li>Jak si za web říct o peníze</li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="folio-note mono">
+      * Přesný obsah, délka i cena se ještě dolaďují. Podmínky prodeje kurzu najdeš v
+      <a href="/podminky-kurzu">podmínkách kurzů</a>.
+    </p>
+  </section>
+
+  <!-- ═══════════════ WAITLIST ═══════════════ -->
+  <section class="cta" id="waitlist">
+    <div class="cta__inner">
+      <div class="cta__copy">
+        <span class="kicker"><span class="kicker__dash"></span><span class="mono">WAITLIST</span></span>
+        <h2 class="section-title">Chceš vědět <em>první</em>?</h2>
+        <p>
+          Nech mi e-mail a dám ti vědět, jakmile kurz spustím — nejspíš i s early-bird cenou pro
+          lidi z waitlistu. Žádný spam, jen zpráva o spuštění.
+        </p>
+      </div>
+
+      <form class="cta__form lg lg--strong" data-glass id="kurz-form" data-mfx-form data-form-type="kurz" novalidate>
+        <div class="lg__refract" aria-hidden="true"></div>
+        <div class="cta__form-head">
+          <span class="mono">→ ZÁPIS DO WAITLISTU</span>
+          <span class="mono cta__form-mono">brzy</span>
+        </div>
+
+        <!-- Honeypot -->
+        <div class="hp" aria-hidden="true">
+          <label>Website (nevyplňuj)
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+
+        <label>
+          <span class="mono">JMÉNO (NEPOVINNÉ)</span>
+          <input type="text" name="name" placeholder="Jan Novák" autocomplete="name" />
+          <small class="form-error" data-error-for="name" hidden></small>
+        </label>
+        <label>
+          <span class="mono">E-MAIL</span>
+          <input type="email" name="email" required data-validate="email" placeholder="tvuj@email.cz" autocomplete="email" />
+          <small class="form-error" data-error-for="email" hidden></small>
+        </label>
+
+        <label class="cta__gdpr">
+          <input type="checkbox" name="gdpr" required />
+          <span>Souhlasím, že mi na uvedený e-mail dáte vědět o spuštění kurzu, dle <a href="/zasady-ochrany-osobnich-udaju">zásad ochrany osobních údajů</a>.</span>
+          <small class="form-error" data-error-for="gdpr" hidden></small>
+        </label>
+
+        <button type="submit" class="btn btn--primary cta__submit">
+          <span class="cta__submit-default">Zapsat do waitlistu</span>
+          <span class="cta__submit-sending">Odesílám…</span>
+          <span class="cta__submit-sent">✓ Jsi na seznamu!</span>
+          <span class="cta__submit-error">⚠ Něco selhalo — zkus to znovu</span>
+        </button>
+        <p class="cta__fineprint mono">
+          Zápis do waitlistu není objednávka ani platba — jen tě upozorním, až kurz spustím.
+        </p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <div class="footer__top">
+    <a href="/" class="footer__brand">
+      <svg class="nav__mark" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="ftr-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#7CC8FF"/>
+            <stop offset="1" stop-color="#3568D4"/>
+          </linearGradient>
+        </defs>
+        <path d="M6 38 C 14 22, 22 22, 32 38 S 50 54, 58 38" stroke="url(#ftr-grad)" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+        <path d="M6 28 C 14 12, 22 12, 32 28 S 50 44, 58 28" stroke="url(#ftr-grad)" stroke-width="3.2" stroke-linecap="round" fill="none" opacity="0.55"/>
+      </svg>
+      <span class="nav__wordmark">MFX-FLOW</span>
+    </a>
+    <p class="footer__claim">
+      Webová agentura pro firmy, podnikatele a živnostníky.<br/>
+      <span class="mono">ZLÍN · ČR</span>
+    </p>
+  </div>
+
+  <div class="footer__cols">
+    <div>
+      <span class="mono footer__lbl">PRODUKT</span>
+      <a href="/#reseni">Jednostránkový web — 9 000 Kč</a>
+      <a href="/#reseni">Vícestránkový web — 12 000 Kč</a>
+      <a href="/kurzy">Kurzy — Postav si web s AI</a>
+    </div>
+    <div>
+      <span class="mono footer__lbl">FIRMA</span>
+      <a href="/#proces">Jak pracujeme</a>
+      <a href="/#reference">Reference</a>
+      <a href="/affiliate">Affiliate — doporuč a vydělej</a>
+    </div>
+    <div>
+      <span class="mono footer__lbl">KONTAKT</span>
+      <a href="tel:+420792763075">+420 792 763 075</a>
+      <a href="mailto:mojzisekf@gmail.com">mojzisekf@gmail.com</a>
+      <a href="/#kontakt">Domluvit hovor</a>
+    </div>
+    <div>
+      <span class="mono footer__lbl">PRÁVNÍ</span>
+      <a href="/zasady-ochrany-osobnich-udaju">Ochrana osobních údajů</a>
+      <a href="/obchodni-podminky">Obchodní podmínky</a>
+      <a href="/podminky-affiliate">Podmínky affiliate</a>
+      <a href="/podminky-kurzu">Podmínky kurzů</a>
+    </div>
+  </div>
+
+  <div class="footer__legal mono">
+    <span class="footer__lbl">PROVOZOVATEL</span>
+    <p>
+      [DOPLNIT: Jméno a příjmení provozovatele] · IČO: [DOPLNIT] · se sídlem [DOPLNIT].
+      Kontakt: <a href="mailto:mojzisekf@gmail.com">mojzisekf@gmail.com</a>.
+    </p>
+  </div>
+
+  <div class="footer__bottom mono">
+    <span>© 2026 MFX-FLOW</span>
+    <span>Postaveno na vlastních pravidlech.</span>
+    <span id="footer-clock">--:--:--</span>
+  </div>
+</footer>
+
+<script defer src="app.js"></script>
+<script defer src="liquid-glass.js"></script>
+<script type="module" src="/form.js"></script>
+</body>
+</html>

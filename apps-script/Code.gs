@@ -53,10 +53,12 @@ const COL = {
   REFERRER: 7,
   STATUS: 8,
   NOTES: 9,
+  TYPE: 10,    // lead / tip / kurz
+  DETAIL: 11,  // extra pole (doporucena firma, waitlist email, poznamka)
 };
 const HEADER = [
   'Datum', 'Jmeno', 'Kontakt', 'Typ poptavky', 'GDPR',
-  'UserAgent', 'Referrer', 'STATUS', 'POZNAMKY'
+  'UserAgent', 'Referrer', 'STATUS', 'POZNAMKY', 'ZDROJ', 'DETAIL'
 ];
 // ===================================================== //
 
@@ -73,29 +75,59 @@ function doPost(e) {
       return jsonResponse({ status: 'ok', spam: true });
     }
 
-    // ─── Validace povinnych poli ───
-    if (!data.name || !data.contact) {
+    // ─── Typ formulare (lead / tip / kurz) ───
+    const type = (data.type || 'lead').toLowerCase();
+
+    // Primarni kontakt: kurz posila email, ostatni contact
+    const primaryContact = data.contact || data.email || '';
+
+    // ─── Validace povinnych poli (dle typu) ───
+    let missing = false;
+    if (type === 'tip') {
+      missing = !data.name || !primaryContact || !data.firma || !data.firmaContact;
+    } else if (type === 'kurz') {
+      missing = !primaryContact;
+    } else {
+      missing = !data.name || !primaryContact;
+    }
+    if (missing) {
       return jsonResponse({ status: 'error', message: 'Chybi povinna pole' });
+    }
+
+    // ─── Detail (extra pole dle typu) ───
+    let detail = '';
+    if (type === 'tip') {
+      detail = 'Doporucena firma: ' + (data.firma || '') + ' | Kontakt: ' + (data.firmaContact || '')
+             + (data.note ? ' | Pozn.: ' + data.note : '');
+    } else if (type === 'kurz') {
+      detail = 'Waitlist kurzu' + (data.name ? ' | ' + data.name : '');
     }
 
     const sheet = getOrCreateSheet();
     const timestamp = new Date();
 
-    // ─── Duplicate detection ───
-    const isDuplicate = findRecentDuplicate(sheet, data.contact, timestamp);
+    // ─── Duplicate detection (dle primarniho kontaktu) ───
+    const isDuplicate = findRecentDuplicate(sheet, primaryContact, timestamp);
     const status = isDuplicate ? 'spam' : CONFIG.STATUS_VALUES[0];
+
+    // Pro notifikaci/prehled doplnime rozumne fallbacky
+    if (!data.name) data.name = (type === 'kurz' ? '(waitlist)' : '(neuvedeno)');
+    if (!data.contact) data.contact = primaryContact;
+    if (!data.kind) data.kind = 'typ: ' + type;
 
     // ─── Zapis do Sheetu ───
     sheet.appendRow([
       timestamp,
       data.name || '',
-      data.contact || '',
+      primaryContact,
       data.kind || '',
       data.gdpr ? 'ANO' : 'NE',
       data.userAgent || '',
       data.referrer || '',
       status,
-      '',  // POZNAMKY
+      '',      // POZNAMKY
+      type,    // ZDROJ (lead/tip/kurz)
+      detail,  // DETAIL
     ]);
 
     // ─── Notifikace majiteli (s flag pro duplikaty) ───
@@ -153,6 +185,8 @@ function setupSheet() {
   sheet.setColumnWidth(COL.REFERRER, 140);
   sheet.setColumnWidth(COL.STATUS, 130);
   sheet.setColumnWidth(COL.NOTES, 320);
+  sheet.setColumnWidth(COL.TYPE, 90);
+  sheet.setColumnWidth(COL.DETAIL, 360);
 
   // Data validation pro STATUS sloupec (dropdown)
   const statusRange = sheet.getRange(2, COL.STATUS, sheet.getMaxRows() - 1, 1);

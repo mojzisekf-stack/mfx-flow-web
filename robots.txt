@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /zasady-ochrany-osobnich-udaju
+Disallow: /obchodni-podminky
+Disallow: /podminky-affiliate
+Disallow: /podminky-kurzu
+
+Sitemap: https://mfx-flow.cz/sitemap.xml
