@@ -95,6 +95,19 @@ function collectPayload(form) {
     }
   });
 
+  // ─── Kompatibilita se staršími Apps Scripty (vyžadují name + contact) ───
+  // Nový/rozšířený Code.gs si poradí i bez tohohle, ale se starou verzí
+  // by se waitlist (jen e-mail) ztratil a u tipu by zmizely detaily firmy.
+  if (payload.type === 'kurz') {
+    if (!payload.contact) payload.contact = payload.email || '';
+    if (!payload.name)    payload.name = 'Waitlist kurzu';
+    if (!payload.kind)    payload.kind = 'Kurz – waitlist';
+  } else if (payload.type === 'tip') {
+    payload.kind = 'Affiliate tip → ' + (payload.firma || '') +
+      (payload.firmaContact ? ' · ' + payload.firmaContact : '') +
+      (payload.note ? ' · ' + payload.note : '');
+  }
+
   return payload;
 }
 
