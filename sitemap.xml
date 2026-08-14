@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mfx-flow.cz/</loc>
+    <loc>https://mfx-flow-web.vercel.app/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mfx-flow.cz/affiliate</loc>
+    <loc>https://mfx-flow-web.vercel.app/affiliate</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mfx-flow.cz/kurzy</loc>
+    <loc>https://mfx-flow-web.vercel.app/kurzy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
