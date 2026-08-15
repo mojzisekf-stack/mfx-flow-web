@@ -2,6 +2,10 @@
    MFX-FLOW · landing · interactions
 ═══════════════════════════════════════════════════════════════ */
 
+// Vercel Web Analytics
+import { inject } from '@vercel/analytics';
+inject();
+
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.matchMedia('(max-width: 720px)').matches;
