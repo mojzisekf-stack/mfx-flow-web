@@ -5,4 +5,4 @@ Disallow: /obchodni-podminky
 Disallow: /podminky-affiliate
 Disallow: /podminky-kurzu
 
-Sitemap: https://mfx-flow-web.vercel.app/sitemap.xml
+Sitemap: https://www.mfx-flow.com/sitemap.xml
