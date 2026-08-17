@@ -2167,3 +2167,41 @@ body.menu-open .mobile-cta{ transform: translateY(160%) !important; opacity: 0 !
   .cookie-banner__actions{ width: 100%; }
   .cookie-banner__btn{ flex: 1; }
 }
+
+/* ═══ FAQ (native details) ═══ */
+.faq{ background: var(--ink); padding: clamp(64px,10vw,120px) var(--gutter); border-top: 1px solid var(--bone-line); }
+.faq__list{ max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq__item{
+  border: 1px solid var(--bone-line); border-radius: 16px;
+  background: linear-gradient(180deg, rgba(242,238,229,0.04), rgba(242,238,229,0.01));
+  overflow: hidden; transition: border-color .25s var(--ease-out);
+}
+.faq__item[open]{ border-color: rgba(124,200,255,0.4); }
+.faq__item summary{
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 20px 22px; font-family: var(--f-display); font-weight: 600;
+  font-size: clamp(16px, 2vw, 19px); color: var(--bone);
+}
+.faq__item summary::-webkit-details-marker{ display: none; }
+.faq__item summary::after{
+  content: "+"; font-family: var(--f-mono); font-size: 22px; color: var(--ocean);
+  transition: transform .25s var(--ease-out); flex: 0 0 auto;
+}
+.faq__item[open] summary::after{ transform: rotate(45deg); }
+.faq__a{ padding: 0 22px 20px; }
+.faq__a p{ margin: 0; color: var(--bone-dim); font-size: 15px; line-height: 1.6; max-width: 62ch; }
+@media (max-width:720px){ .faq__item summary{ padding: 16px 18px; font-size: 16px; } .faq__a{ padding: 0 18px 16px; } }
+
+/* About — autor (lidský prvek, avatar s iniciálami; lze nahradit fotkou) */
+.about__author{ display: flex; align-items: center; gap: 14px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--bone-line); }
+.about__avatar{
+  flex: 0 0 auto; width: 52px; height: 52px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: radial-gradient(circle at 35% 30%, #3568D4, #10233f);
+  border: 1px solid rgba(124,200,255,0.4);
+  font-family: var(--f-display); font-weight: 800; font-size: 18px; color: var(--bone); letter-spacing: .5px;
+}
+.about__author-txt{ display: flex; flex-direction: column; gap: 2px; }
+.about__author-txt b{ font-family: var(--f-display); font-weight: 700; font-size: 16px; }
+.about__author-txt .mono{ font-size: 10.5px; }

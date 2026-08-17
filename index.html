@@ -7,10 +7,9 @@
 <meta name="description" content="Webová agentura pro firmy, OSVČ a podnikatele. Vlastní kód, ne šablona. Hotovo za 3–7 dní od 9 000 Kč." />
 <link rel="canonical" href="https://mfx-flow-web.vercel.app/" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&f[]=general-sans@600,500,400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/fonts.css" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#07101F" />
 
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="liquid-glass.css" />
@@ -34,15 +33,80 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "MFX-FLOW",
-  "description": "Webová agentura pro firmy, OSVČ a podnikatele. Vlastní kód, hotovo za 3–7 dní od 9 000 Kč.",
+  "description": "Tvorba webových stránek na míru pro firmy, OSVČ a podnikatele. Vlastní kód, hotovo za 3–7 dní od 9 000 Kč.",
   "url": "https://mfx-flow-web.vercel.app/",
-  "areaServed": "CZ",
+  "image": "https://mfx-flow-web.vercel.app/assets/og.png",
+  "logo": "https://mfx-flow-web.vercel.app/assets/logo-mark.svg",
+  "email": "mojzisekf@gmail.com",
+  "telephone": "+420792763075",
   "priceRange": "9000–12000 Kč",
+  "areaServed": { "@type": "Country", "name": "Česko" },
   "address": { "@type": "PostalAddress", "addressLocality": "Zlín", "addressCountry": "CZ" },
-  "makesOffer": {
-    "@type": "Offer",
-    "itemOffered": { "@type": "Service", "name": "Tvorba webových stránek" }
+  "provider": { "@type": "Organization", "name": "MTF Consulting s.r.o.", "vatID": "CZ22288406", "identifier": "22288406" },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Balíčky webů",
+    "itemListElement": [
+      { "@type": "Offer", "price": "9000", "priceCurrency": "CZK", "itemOffered": { "@type": "Service", "name": "Jednostránkový web na míru" } },
+      { "@type": "Offer", "price": "12000", "priceCurrency": "CZK", "itemOffered": { "@type": "Service", "name": "Vícestránkový web na míru" } }
+    ]
   }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kolik web stojí?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jednostránkový web od 9 000 Kč, vícestránkový od 12 000 Kč (ceny včetně DPH). Cena je pevná a víš ji předem — žádné překvapení ve faktuře."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak dlouho trvá, než web postavíte?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Obvykle 3 až 7 dní od dodání podkladů — jednostránkový 3–5 dní, vícestránkový 5–7 dní."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co od tebe budu potřebovat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Krátký brief, texty (nebo aspoň body), logo a případně fotky. Když texty nemáš, pomůžu je dát dohromady."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pro koho jsou weby vhodné?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pro firmy, OSVČ, živnostníky i poradce — pro kohokoli, kdo chce důvěryhodnou vizitku a získávat poptávky z Googlu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co hosting a provoz webu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Web běží na Vercelu (rychlý, se SSL certifikátem). Neplatíš žádný měsíční poplatek za to, že web existuje — jen vlastní doménu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Půjdou později dělat úpravy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano. 14 dní drobných úprav je v ceně, další změny po dohodě. Kód je tvůj, nikde nejsi zamčený."
+      }
+    }
+  ]
 }
 </script>
 </head>
@@ -136,7 +200,7 @@
     </h1>
 
     <p class="hero__sub">
-      Pak jsou ty naše. Hotové do týdne, postavené tak, aby z Googlu chodili <strong>lidi</strong> — ne crawleři. Bez šablon, bez výmluv, bez „to za měsíc dořešíme".
+      Pak jsou ty naše. Hotové do týdne a postavené tak, aby z Googlu chodili <strong>lidi</strong>, ne roboti. Bez šablon a bez výmluv.
     </p>
 
     <div class="hero__glass-card lg lg--strong lg--rim" data-glass>
@@ -156,21 +220,9 @@
         <li><b>1×</b><span class="mono">jeden hovor, žádné meetingy</span></li>
       </ul>
     </div>
-
-    <div class="hero__meter">
-      <div class="hero__meter-row">
-        <span class="mono">SCROLL</span>
-        <span class="hero__meter-track"><span class="hero__meter-fill" id="hero-meter"></span></span>
-        <span class="mono" id="hero-meter-num">000</span>
-      </div>
-    </div>
   </div>
 
-  <div class="hero__corner hero__corner--tl"><span class="mono"></span></div>
-  <div class="hero__corner hero__corner--tr"><span class="mono"></span></div>
-  <div class="hero__corner hero__corner--bl"><span class="mono">⌘ posun dolů</span></div>
-  <div class="hero__corner hero__corner--br"><span class="mono">cinematic / 24fps</span></div>
-</section>
+        </section>
 
 <!-- ═══════════════ TL;DR — pro koho / co / za kolik ═══════════════ -->
 <section class="tldr" data-screen-label="TLDR">
@@ -183,7 +235,7 @@
     <article class="tldr__col">
       <span class="mono tldr__lbl">CO DOSTANEŠ</span>
       <h3>Vlastní web. Vlastní kód.</h3>
-      <p>Next.js + Tailwind, hosting na Vercel zdarma, plně responzivní, optimalizovaný pro Google. Žádná šablona.</p>
+      <p>Web na míru vlastním kódem — rychlý, plně responzivní a optimalizovaný pro Google. Žádná šablona.</p>
     </article>
     <article class="tldr__col">
       <span class="mono tldr__lbl">ZA KOLIK A KDY</span>
@@ -198,12 +250,12 @@
     <span>VLASTNÍ KÓD</span><span class="dot-sep">●</span>
     <span>OD 9 000 KČ</span><span class="dot-sep">●</span>
     <span>BEZ ZÁVAZKŮ</span><span class="dot-sep">●</span>
-    <span>NEXT.JS · VERCEL</span><span class="dot-sep">●</span>
+    <span>NA MÍRU</span><span class="dot-sep">●</span>
     <span>RYCHLE</span><span class="dot-sep">●</span>
     <span>VLASTNÍ KÓD</span><span class="dot-sep">●</span>
     <span>OD 9 000 KČ</span><span class="dot-sep">●</span>
     <span>BEZ ZÁVAZKŮ</span><span class="dot-sep">●</span>
-    <span>NEXT.JS · VERCEL</span><span class="dot-sep">●</span>
+    <span>NA MÍRU</span><span class="dot-sep">●</span>
   </div>
 </div>
 
@@ -211,7 +263,7 @@
 <section id="o-nas" class="about" data-screen-label="02 O nas">
   <div class="about__inner">
     <div class="about__copy">
-      <span class="kicker"><span class="kicker__dash"></span><span class="mono">02 — O NÁS</span></span>
+      <span class="kicker"><span class="kicker__dash"></span><span class="mono">O NÁS</span></span>
       <h2 class="section-title">
         Jsme <em>MFX-FLOW</em>.<br/>
         Webovka už za <em>tři dny</em>.
@@ -222,17 +274,17 @@
         za měsíc, my máme v pátek live web na vaší doméně.
       </p>
       <p>
-        Stavíme weby pomocí AI nástrojů (Claude Code, Cursor, Vercel) — proto rychle,
-        proto na míru, proto za rozumné peníze. Stack je jednoduchý a moderní:
-        Next.js, Tailwind, Vercel. <strong>Žádná šablona, žádný uzamčený systém,
+        Weby píšu vlastním kódem a s pomocí AI nástrojů — proto to jde rychle,
+        na míru a za rozumné peníze. <strong>Žádná šablona, žádný uzamčený systém,
         žádný měsíční poplatek</strong> za to, že existujete.
       </p>
       <p>
         Mluvíme rovně, ceny máme na webu, do briefu se vejdeme za 15 minut hovoru.
       </p>
-      <p class="about__signature">
-        <span class="mono">— FILIP MOJŽÍŠEK · ZAKLADATEL</span>
-      </p>
+      <div class="about__author">
+        <span class="about__avatar" aria-hidden="true">FM</span>
+        <div class="about__author-txt"><b>Filip Mojžíšek</b><span class="mono">ZAKLADATEL · MFX-FLOW</span></div>
+      </div>
     </div>
     <aside class="about__facts">
       <div class="fact">
@@ -241,7 +293,7 @@
       </div>
       <div class="fact">
         <span class="mono">STACK</span>
-        <b>Next.js 15<br/>Tailwind · Vercel</b>
+        <b>Vlastní kód<br/>hosting Vercel</b>
       </div>
       <div class="fact">
         <span class="mono">DOBA DODÁNÍ</span>
@@ -263,107 +315,12 @@
   </div>
 </section>
 
-<!-- ═══════════════ HLEDÁ TĚ NĚKDO? — search comparison ═══════════════ -->
-<section id="prilezitosti" class="opps" data-screen-label="04 Prilezitosti">
-  <div class="section-head section-head--center">
-    <span class="kicker"><span class="kicker__dash"></span><span class="mono">03 — KAM SE ZTRÁCÍ POPTÁVKY</span></span>
-    <h2 class="section-title">
-      Když tě někdo zadá do <em>Googlu</em>,<br/>
-      vidí tohle.
-    </h2>
-    <p class="section-lede">
-      Bez webu jste mimo první obrazovku. S webem jste tam, kde lidé klikají.
-      Níže reálná simulace, jak vyhledávač zachází s firmou bez webu vs. s webem.
-    </p>
-  </div>
-
-  <!-- Search results comparison -->
-  <div class="serp">
-    <article class="serp__col serp__col--bad">
-      <header>
-        <span class="serp__tag mono">⌕ &lt;tvoje služba&gt; &lt;tvoje město&gt; · BEZ WEBU</span>
-      </header>
-      <ol class="serp__results">
-        <li class="serp__item is-other">
-          <div class="serp__title">Konkurence A s.r.o.</div>
-          <div class="serp__url mono">konkurence-a.cz</div>
-          <div class="serp__desc">Rychle, spolehlivě, ve tvém městě a okolí. Nezávazná nabídka do 24 h…</div>
-        </li>
-        <li class="serp__item is-other">
-          <div class="serp__title">Profi Služby CZ</div>
-          <div class="serp__url mono">profi-sluzby.cz</div>
-          <div class="serp__desc">Komplexní služby pro domácnosti i firmy. Ověřené reference, online objednávka…</div>
-        </li>
-        <li class="serp__item is-other">
-          <div class="serp__title">Novák &amp; syn</div>
-          <div class="serp__url mono">novak-a-syn.cz</div>
-          <div class="serp__desc">15 let na trhu. Férové ceny, práce na míru. Rezervace online.</div>
-        </li>
-        <li class="serp__item is-empty">
-          <div class="serp__placeholder">
-            <span class="mono">— vy zde nejste —</span>
-            <small>Bez webu váš profil v lokálním Googlu nemá kam odkázat.</small>
-          </div>
-        </li>
-      </ol>
-    </article>
-
-    <article class="serp__col serp__col--good">
-      <header>
-        <span class="serp__tag mono">⌕ &lt;tvoje služba&gt; &lt;tvoje město&gt; · S WEBEM OD MFX-FLOW</span>
-      </header>
-      <ol class="serp__results">
-        <li class="serp__item is-you">
-          <span class="serp__badge mono">★ TY</span>
-          <div class="serp__title">Tvoje firma — přesně to, co zákazník hledá</div>
-          <div class="serp__url mono">tvoje-firma.cz</div>
-          <div class="serp__desc">Tvoje město a okolí, rychlá reakce. Roky praxe, jasné ceny, kontakt na jedno kliknutí…</div>
-        </li>
-        <li class="serp__item is-other">
-          <div class="serp__title">Konkurence A s.r.o.</div>
-          <div class="serp__url mono">konkurence-a.cz</div>
-          <div class="serp__desc">Rychle, spolehlivě, ve tvém městě a okolí…</div>
-        </li>
-        <li class="serp__item is-other">
-          <div class="serp__title">Profi Služby CZ</div>
-          <div class="serp__url mono">profi-sluzby.cz</div>
-          <div class="serp__desc">Komplexní služby pro domácnosti i firmy…</div>
-        </li>
-        <li class="serp__item is-other">
-          <div class="serp__title">Novák &amp; syn</div>
-          <div class="serp__url mono">novak-a-syn.cz</div>
-          <div class="serp__desc">15 let na trhu. Férové ceny, práce na míru…</div>
-        </li>
-      </ol>
-    </article>
-  </div>
-
-  <!-- Three sourced facts -->
-  <div class="facts3">
-    <article class="fact3">
-      <div class="fact3__big">81 %</div>
-      <h4>lidí ověřuje firmu online před prvním kontaktem</h4>
-      <p class="mono">Zdroj: GE Capital Retail Bank — Major Purchase Shopper Study</p>
-    </article>
-    <article class="fact3">
-      <div class="fact3__big">76 %</div>
-      <h4>lokálních vyhledávání skončí kontaktem do 24 h</h4>
-      <p class="mono">Zdroj: Google · Think with Google · Mobile Search Behavior</p>
-    </article>
-    <article class="fact3">
-      <div class="fact3__big">9 / 10</div>
-      <h4>spotřebitelů čte recenze před návštěvou nebo nákupem</h4>
-      <p class="mono">Zdroj: BrightLocal · Local Consumer Review Survey</p>
-    </article>
-  </div>
-</section>
-
 <!-- ═══════════════ ŘEŠENÍ ═══════════════ -->
 <section id="reseni" class="solution" data-screen-label="05 Reseni">
   <div class="solution__bg solution__bg--css" aria-hidden="true"></div>
 
   <div class="section-head section-head--center solution__head">
-    <span class="kicker"><span class="kicker__dash"></span><span class="mono">04 — BALÍČKY</span></span>
+    <span class="kicker"><span class="kicker__dash"></span><span class="mono">BALÍČKY</span></span>
     <h2 class="section-title">
       Dva balíčky.<br/>Žádné <em>překvapení</em> ve faktuře.
     </h2>
@@ -425,7 +382,7 @@
 <!-- ═══════════════ PORTFOLIO / UKÁZKY ═══════════════ -->
 <section id="portfolio" class="folio" data-screen-label="06 Portfolio">
   <div class="section-head">
-    <span class="kicker"><span class="kicker__dash"></span><span class="mono">05 — PORTFOLIO</span></span>
+    <span class="kicker"><span class="kicker__dash"></span><span class="mono">PORTFOLIO</span></span>
     <h2 class="section-title">
       Portfolio.<br/>
       První <em>realizace</em>.
@@ -477,14 +434,13 @@
 <section id="proces" class="process" data-screen-label="07 Proces">
   <div class="process__top">
     <div class="section-head section-head--inline">
-      <span class="kicker"><span class="kicker__dash"></span><span class="mono">06 — JAK TO FUNGUJE</span></span>
+      <span class="kicker"><span class="kicker__dash"></span><span class="mono">JAK TO FUNGUJE</span></span>
       <h2 class="section-title">
         Od poptávky k živému webu<br/>za <em>pár dní</em>.
       </h2>
     </div>
     <div class="process__stage process__stage--css">
       <div class="process__stage-glow" aria-hidden="true"></div>
-      <div class="process__stage-label mono">LIVE PREVIEW · /preview/build</div>
     </div>
   </div>
 
@@ -525,7 +481,7 @@
     </div>
   </div>
   <div class="section-head section-head--center">
-    <span class="kicker"><span class="kicker__dash"></span><span class="mono">07 — DŮVĚRA</span></span>
+    <span class="kicker"><span class="kicker__dash"></span><span class="mono">DŮVĚRA</span></span>
     <h2 class="section-title">
       Stavíme novou agenturu —<br/>tady je, na čem to <em>stojí</em>.
     </h2>
@@ -548,18 +504,52 @@
       <div class="proof-stat__lbl mono">VLASTNÍ KÓD · BEZ ŠABLON</div>
     </div>
     <div class="proof-stat" data-glow style="--base:120;--spread:200">
-      <div class="proof-stat__num">95+</div>
-      <div class="proof-stat__lbl mono">LIGHTHOUSE PERFORMANCE</div>
+      <div class="proof-stat__num">24 h</div>
+      <div class="proof-stat__lbl mono">ODPOVĚĎ NA POPTÁVKU</div>
     </div>
   </div>
 
+</section>
+
+<!-- ═══════════════ FAQ ═══════════════ -->
+<section id="faq" class="faq" data-screen-label="FAQ">
+  <div class="section-head section-head--center">
+    <span class="kicker"><span class="kicker__dash"></span><span class="mono">ČASTÉ OTÁZKY</span></span>
+    <h2 class="section-title">Co se ptáte <em>nejčastěji</em>.</h2>
+  </div>
+  <div class="faq__list">
+    <details class="faq__item">
+      <summary>Kolik web stojí?</summary>
+      <div class="faq__a"><p>Jednostránkový web od 9 000 Kč, vícestránkový od 12 000 Kč (ceny včetně DPH). Cena je pevná a víš ji předem — žádné překvapení ve faktuře.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary>Jak dlouho trvá, než web postavíte?</summary>
+      <div class="faq__a"><p>Obvykle 3 až 7 dní od dodání podkladů — jednostránkový 3–5 dní, vícestránkový 5–7 dní.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary>Co od tebe budu potřebovat?</summary>
+      <div class="faq__a"><p>Krátký brief, texty (nebo aspoň body), logo a případně fotky. Když texty nemáš, pomůžu je dát dohromady.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary>Pro koho jsou weby vhodné?</summary>
+      <div class="faq__a"><p>Pro firmy, OSVČ, živnostníky i poradce — pro kohokoli, kdo chce důvěryhodnou vizitku a získávat poptávky z Googlu.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary>Co hosting a provoz webu?</summary>
+      <div class="faq__a"><p>Web běží na Vercelu (rychlý, se SSL certifikátem). Neplatíš žádný měsíční poplatek za to, že web existuje — jen vlastní doménu.</p></div>
+    </details>
+    <details class="faq__item">
+      <summary>Půjdou později dělat úpravy?</summary>
+      <div class="faq__a"><p>Ano. 14 dní drobných úprav je v ceně, další změny po dohodě. Kód je tvůj, nikde nejsi zamčený.</p></div>
+    </details>
+  </div>
 </section>
 
 <!-- ═══════════════ CTA ═══════════════ -->
 <section id="kontakt" class="cta" data-screen-label="09 CTA">
   <div class="cta__inner">
     <div class="cta__copy">
-      <span class="kicker"><span class="kicker__dash"></span><span class="mono">08 — DALŠÍ KROK</span></span>
+      <span class="kicker"><span class="kicker__dash"></span><span class="mono">DALŠÍ KROK</span></span>
       <h2 class="section-title">
         15 minut hovoru.<br/>
         Žádný <em>závazek</em>.
@@ -702,7 +692,6 @@
   </div>
 </footer>
 
-<script defer src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 <script defer src="app.js"></script>
 <script defer src="liquid-glass.js"></script>
 <script type="module" src="/form.js"></script>
